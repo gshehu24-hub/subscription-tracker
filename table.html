@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subscription Tracker - Subscriptions</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="ui-body">
+  <header class="ui-header">
+    <h1>Subscription Tracker</h1>
+  </header>
+
+  <main class="ui-container">
+    <nav class="ui-tabs">
+      <a class="ui-tab" href="index.html">Summary</a>
+      <a class="ui-tab" href="form.html">Add Subscription</a>
+      <a class="ui-tab" href="table.html">Subscriptions</a>
+    </nav>
+
+    <section id="table-section" class="ui-card">
+      <h2 class="ui-title">Subscriptions</h2>
+      <div class="ui-table-wrapper">
+        <table id="subscription-table" class="ui-table">
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>Provider</th>
+              <th>Subscriber</th>
+              <th>Renewal date</th>
+              <th>Category</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="subscription-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
