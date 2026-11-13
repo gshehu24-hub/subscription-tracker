@@ -6,56 +6,63 @@
   <title>Subscription Tracker</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <header>
+<body class="ui-body">
+  <header class="ui-header">
     <h1>Subscription Tracker</h1>
   </header>
 
-  <main>
-    <section id="form-section">
-      <h2>Add Subscription</h2>
-      <form id="subscription-form">
-        <label for="service">Service</label>
-        <input type="text" id="service" name="service" required>
+    <main class="ui-container">
+    <nav class="ui-tabs">
+      <a class="ui-tab" href="#form-section">Add Subscription</a>
+      <a class="ui-tab" href="#table-section">Subscriptions</a>
+    </nav>
 
-        <label for="provider">Provider</label>
-        <input type="text" id="provider" name="provider" required>
+    <section id="summary-section" class="ui-card">
+      <h2 class="ui-title">Summary</h2>
+      <p class="ui-summary-item">Total subscriptions: <span id="total-count">0</span></p>
+      <p class="ui-summary-item">Expired subscriptions: <span id="expired-count">0</span></p>
+    </section>
 
-        <label for="subscriber">Subscriber</label>
-        <input type="text" id="subscriber" name="subscriber" required>
+    <section id="form-section" class="ui-card ui-view ui-view-default">
+      <h2 class="ui-title">Add Subscription</h2>
+      <form id="subscription-form" class="ui-form">
+        <label class="ui-label" for="service">Service</label>
+        <input class="ui-input" type="text" id="service" name="service" required>
 
-        <label for="renewal-date">Renewal date</label>
-        <input type="date" id="renewal-date" name="renewal-date" required>
+        <label class="ui-label" for="provider">Provider</label>
+        <input class="ui-input" type="text" id="provider" name="provider" required>
 
-        <label for="category">Category</label>
-        <input type="text" id="category" name="category" required>
+        <label class="ui-label" for="subscriber">Subscriber</label>
+        <input class="ui-input" type="text" id="subscriber" name="subscriber" required>
 
-        <button type="submit">Add</button>
+        <label class="ui-label" for="renewal-date">Renewal date</label>
+        <input class="ui-input" type="date" id="renewal-date" name="renewal-date" required>
+
+        <label class="ui-label" for="category">Category</label>
+        <input class="ui-input" type="text" id="category" name="category" required>
+
+        <button class="ui-btn" type="submit">Add</button>
       </form>
     </section>
 
-    <section id="table-section">
-      <h2>Subscriptions</h2>
-      <table id="subscription-table">
-        <thead>
-          <tr>
-            <th>Service</th>
-            <th>Provider</th>
-            <th>Subscriber</th>
-            <th>Renewal date</th>
-            <th>Category</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="subscription-body"></tbody>
-      </table>
-    </section>
-
-    <section id="summary-section">
-      <h2>Summary</h2>
-      <p>Total subscriptions: <span id="total-count">0</span></p>
-      <p>Expired subscriptions: <span id="expired-count">0</span></p>
+    <section id="table-section" class="ui-card ui-view">
+      <h2 class="ui-title">Subscriptions</h2>
+      <div class="ui-table-wrapper">
+        <table id="subscription-table" class="ui-table">
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>Provider</th>
+              <th>Subscriber</th>
+              <th>Renewal date</th>
+              <th>Category</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="subscription-body"></tbody>
+        </table>
+      </div>
     </section>
   </main>
 
