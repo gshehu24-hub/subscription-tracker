@@ -91,7 +91,6 @@ const SubscriptionLib = (function () {
     totalEl.textContent = getTotal();
     expiredEl.textContent = getExpiredCount();
   }
-
   function init(config) {
     const form = document.getElementById(config.formId);
     const tbody = document.getElementById(config.tbodyId);
@@ -99,35 +98,43 @@ const SubscriptionLib = (function () {
     const expiredEl = document.getElementById(config.expiredId);
 
     function refresh() {
-      renderTable(tbody);
-      renderSummary(totalEl, expiredEl);
+      if (tbody) {
+        renderTable(tbody);
+      }
+      if (totalEl && expiredEl) {
+        renderSummary(totalEl, expiredEl);
+      }
     }
 
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-      add({
-        service: form.elements["service"].value.trim(),
-        provider: form.elements["provider"].value.trim(),
-        subscriber: form.elements["subscriber"].value.trim(),
-        renewalDate: form.elements["renewal-date"].value,
-        category: form.elements["category"].value.trim()
+    if (form) {
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        add({
+          service: form.elements["service"].value.trim(),
+          provider: form.elements["provider"].value.trim(),
+          subscriber: form.elements["subscriber"].value.trim(),
+          renewalDate: form.elements["renewal-date"].value,
+          category: form.elements["category"].value.trim()
+        });
+        form.reset();
+        window.location.href = config.redirectAfterAdd;
       });
-      form.reset();
-      refresh();
-      window.location.hash = "#table-section";
-    });
+    }
 
-    tbody.addEventListener("click", function (event) {
-      const id = event.target.getAttribute("data-id");
-      if (id) {
-        remove(Number(id));
-        refresh();
-      }
-    });
+    if (tbody) {
+      tbody.addEventListener("click", function (event) {
+        const id = event.target.getAttribute("data-id");
+        if (id) {
+          remove(Number(id));
+          refresh();
+        }
+      });
+    }
 
     load();
     refresh();
   }
+
 
   return {
     init: init,
@@ -138,10 +145,10 @@ const SubscriptionLib = (function () {
     isExpired: isExpired
   };
 })();
-
 SubscriptionLib.init({
   formId: "subscription-form",
   tbodyId: "subscription-body",
   totalId: "total-count",
-  expiredId: "expired-count"
+  expiredId: "expired-count",
+  redirectAfterAdd: "table.html"
 });
